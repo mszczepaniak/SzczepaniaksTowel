@@ -23,10 +23,10 @@ namespace app.dashboard {
           templateUrl: 'app/dashboard/dashboard.html',
           controller: 'DashboardController',
           controllerAs: 'vm',
-          title: 'dashboard',
+          title: 'Ampio Smart Home - panel użytkownika',
           settings: {
             nav: 1,
-            content: '<i class="fa fa-dashboard"></i> Dashboard'
+            content: '<i class="fa fa-dashboard"></i> Panel Główny'
           }
         }
       }

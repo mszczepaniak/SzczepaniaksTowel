@@ -9,7 +9,7 @@ namespace app.admin {
 
     static $inject: Array<string> = ['logger'];
     constructor(private logger: blocks.logger.Logger) {
-      this.logger.info('Activated Admin View');
+      this.logger.info('Załadowany panel administratora');
     }
   }
 
