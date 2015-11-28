@@ -3,7 +3,7 @@ namespace app.core {
 
   var config = {
     appErrorPrefix: '[helloworld Error] ',
-    appTitle: 'helloworld'
+    appTitle: 'Ampio Smart Home'
   };
 
   angular

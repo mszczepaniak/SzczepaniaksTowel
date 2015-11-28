@@ -17,17 +17,17 @@ namespace app.dashboard {
       private logger: blocks.logger.Logger) {
       var promises = [this.getMessageCount(), this.getPeople()];
       this.$q.all(promises).then(function() {
-        logger.info('Activated Dashboard View');
+        logger.info('Widok Panelu użytkownika');
       });
     }
 
     news = {
-      title: 'helloworld',
-      description: 'Hot Towel Angular is a SPA template for Angular developers.'
+      title: 'Przypomnienie - aktualne zużycie',
+      description: ''
     };
     messageCount: number = 0;
     people: Array<any> = [];
-    title: string = 'Dashboard';
+    title: string = 'Panel Główny';
 
     getMessageCount() {
       return this.dataservice.getMessageCount().then((data) => {
