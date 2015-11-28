@@ -3,7 +3,7 @@ namespace app.core {
 
   export interface IDataService {
     getMessageCount: () => ng.IPromise<number>;
-    getPeople: () => ng.IPromise<any>;
+    getDevice: () => ng.IPromise<any>;
   }
 
   export class DataService implements IDataService {
@@ -16,8 +16,8 @@ namespace app.core {
 
     getMessageCount: () => ng.IPromise<number> = () => this.$q.when(72);
 
-    getPeople: () => ng.IPromise<any> = () =>
-      this.$http.get('/api/people')
+    getDevice: () => ng.IPromise<any> = () =>
+      this.$http.get('/api/device')
         .then(this.success)
         .catch(this.fail);
 
@@ -25,7 +25,7 @@ namespace app.core {
 
     private fail: (error: any) => {} = (error) => {
       var msg = error.data.description;
-      var reason = 'query for people failed.';
+      var reason = 'query for device failed.';
       this.exception.catcher(msg)(reason);
       return this.$q.reject(msg);
     }

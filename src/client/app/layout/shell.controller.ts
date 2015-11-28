@@ -7,12 +7,12 @@ namespace app.layout {
       private $timeout: ng.ITimeoutService,
       private config: { appTitle: string },
       private logger: blocks.logger.Logger) {
-      this.logger.success(config.appTitle + ' loaded!', null);
+      this.logger.success(config.appTitle + ' załadowany!', null);
       this.hideSplash();
       this.$rootScope.showSplash = true;
     }
 
-    busyMessage = 'Please wait ...';
+    busyMessage = 'Proszę czekać ...';
     isBusy = true;
     navline = {
       title: this.config.appTitle,

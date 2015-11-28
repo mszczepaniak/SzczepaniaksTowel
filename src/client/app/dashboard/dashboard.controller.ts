@@ -4,10 +4,10 @@ namespace app.dashboard {
   interface IDashboardVm {
     news: { title: string, description: string };
     messageCount: number;
-    people: Array<any>;
+    device: Array<any>;
     title: string;
     getMessageCount: () => ng.IPromise<number>;
-    getPeople: () => ng.IPromise<Array<any>>;
+    getDevice: () => ng.IPromise<Array<any>>;
   }
 
   export class DashboardController implements IDashboardVm {
@@ -15,7 +15,7 @@ namespace app.dashboard {
     constructor(private $q: ng.IQService,
       private dataservice: app.core.IDataService,
       private logger: blocks.logger.Logger) {
-      var promises = [this.getMessageCount(), this.getPeople()];
+      var promises = [this.getMessageCount(), this.getDevice()];
       this.$q.all(promises).then(function() {
         logger.info('Widok Panelu użytkownika');
       });
@@ -26,7 +26,7 @@ namespace app.dashboard {
       description: ''
     };
     messageCount: number = 0;
-    people: Array<any> = [];
+    device: Array<any> = [];
     title: string = 'Panel Główny';
 
     getMessageCount() {
@@ -36,10 +36,10 @@ namespace app.dashboard {
       });
     }
 
-    getPeople() {
-      return this.dataservice.getPeople().then((data) => {
-        this.people = data;
-        return this.people;
+    getDevice() {
+      return this.dataservice.getDevice().then((data) => {
+        this.device = data;
+        return this.device;
       });
     }
   }

@@ -4,26 +4,26 @@ namespace data {
 
     'use strict';
 
-    interface IPeople {
+    interface IDevices {
         id: number;
-        firstName: string;
-        lastName: string;
-        age: number;
-        location: string;
+        typ_komponentu: string;
+        opis_menu: string;
+        opis_rozwiniety: string;
+        state: string;
     }
 
-    export function getPeople() {
-        var people: Array<IPeople> = [
-            { id: 1, firstName: 'John', lastName: 'Papa', age: 27, location: 'Florida' },
-            { id: 2, firstName: 'Ward', lastName: 'Bell', age: 31, location: 'California' },
-            { id: 3, firstName: 'Colleen', lastName: 'Jones', age: 21, location: 'New York' },
-            { id: 4, firstName: 'Madelyn', lastName: 'Green', age: 18, location: 'North Dakota' },
-            { id: 5, firstName: 'Ella', lastName: 'Jobs', age: 18, location: 'South Dakota' },
-            { id: 6, firstName: 'Landon', lastName: 'Gates', age: 11, location: 'South Carolina' },
-            { id: 7, firstName: 'Haley', lastName: 'Guthrie', age: 35, location: 'Wyoming' },
-            { id: 8, firstName: 'Aaron', lastName: 'Jinglehiemer', age: 22, location: 'Utah' }
-        ];
-        return people;
+    export function getDevice() {
+        var device: Array<IDevices> = [
+      { id: 0, typ_komponentu: 'zarowka', opis_menu: 'swieci', opis_rozwiniety: 'swieci dobrze', state: 'wlaczona' },
+      { id: 1, typ_komponentu: 'piec', opis_menu: 'grzeje', opis_rozwiniety: 'grzeje mocno', state: 'wylaczony' },
+      { id: 2, typ_komponentu: 'grzejnik', opis_menu: 'dziala', opis_rozwiniety: 'dziala bardzo dobrze', state: 'wlaczony' },
+      { id: 3, typ_komponentu: 'led', opis_menu: 'swieci', opis_rozwiniety: 'swieci na niebiesko', state: 'wylaczony' },
+      { id: 4, typ_komponentu: 'zarowka', opis_menu: 'swieci', opis_rozwiniety: 'swieci dobrze', state: 'wlaczona' },
+      { id: 5, typ_komponentu: 'piec', opis_menu: 'grzeje', opis_rozwiniety: 'grzeje mocno', state: 'wylaczony' },
+      { id: 6, typ_komponentu: 'grzejnik', opis_menu: 'dziala', opis_rozwiniety: 'dziala bardzo dobrze', state: 'wlaczony' },
+      { id: 7, typ_komponentu: 'led', opis_menu: 'swieci', opis_rozwiniety: 'swieci na niebiesko', state: 'wylaczony' },  
+    ];
+        return device;
     };
 }
 
