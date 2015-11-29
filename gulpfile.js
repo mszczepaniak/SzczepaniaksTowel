@@ -90,32 +90,6 @@ function runTSC(directory, done) {
 }
 
 /**
- * vet the code and create coverage report
- * @return {Stream}
- */
-gulp.task('vet', function() {
-    log('Analyzing source with TSLint, JSHint and JSCS');
-
-    return gulp
-        .src(config.alljs)
-        .pipe($.if(args.verbose, $.print()))
-        .pipe($.if(args.js, $.jshint()))
-        .pipe($.if(args.js, $.jshint.reporter('jshint-stylish', {verbose: true})))
-        .pipe($.if(args.js, $.jshint.reporter('fail')))
-        .pipe($.if(args.js, $.jscs()));
-});
-
-/**
- * Create a visualizer report
- */
-gulp.task('plato', function(done) {
-    log('Analyzing source with Plato');
-    log('Browse to /report/plato/index.html to see Plato results');
-
-    startPlatoVisualizer(done);
-});
-
-/**
  * Compile less to css
  * @return {Stream}
  */
@@ -254,7 +228,7 @@ gulp.task('build-specs', ['templatecache'], function(done) {
  * This is separate so we can run tests on
  * optimize before handling image or fonts
  */
-gulp.task('build', ['optimize', 'images', 'fonts'], function() {
+gulp.task('build', ['images', 'fonts'], function() {
     log('Building everything');
 
     var msg = {
@@ -272,7 +246,7 @@ gulp.task('build', ['optimize', 'images', 'fonts'], function() {
  * and inject them into the new index.html
  * @return {Stream}
  */
-gulp.task('optimize', ['inject', 'test'], function() {
+gulp.task('optimize', ['inject'], function() {
     log('Optimizing the js, css, and html');
 
     var assets = $.useref.assets({searchPath: './'});
@@ -317,7 +291,7 @@ gulp.task('optimize', ['inject', 'test'], function() {
  * @param  {Function} done - callback when complete
  */
 gulp.task('clean', function(done) {
-    var delconfig = [].concat(config.build, config.temp, config.report);
+    var delconfig = [].concat(config.build, config.temp);
     log('Cleaning: ' + $.util.colors.blue(delconfig));
     del(delconfig, done);
 });
@@ -369,7 +343,7 @@ gulp.task('clean-code', function(done) {
  *    gulp test --startServers
  * @return {Stream}
  */
-gulp.task('test', ['vet', 'tsc', 'templatecache'], function(done) {
+gulp.task('test', ['tsc', 'templatecache'], function(done) {
     startTests(true /*singleRun*/ , done);
 });
 
@@ -513,7 +487,7 @@ function serve(isDev, specRunner) {
     }
 
     return $.nodemon(nodeOptions)
-        .on('restart', ['vet'], function(ev) {
+        .on('restart', [], function(ev) {
             log('*** nodemon restarted');
             log('files changed:\n' + ev);
             setTimeout(function() {
@@ -601,32 +575,6 @@ function startBrowserSync(isDev, specRunner) {
     browserSync(options);
 }
 
-/**
- * Start Plato inspector and visualizer
- */
-function startPlatoVisualizer(done) {
-    log('Running Plato');
-
-    var files = glob.sync(config.plato.js);
-    var excludeFiles = /.*\.spec\.js/;
-    var plato = require('plato');
-
-    var options = {
-        title: 'Plato Inspections Report',
-        exclude: excludeFiles
-    };
-    var outputDir = config.report + '/plato';
-
-    plato.inspect(files, outputDir, options, platoCompleted);
-
-    function platoCompleted(report) {
-        var overview = plato.getOverviewReport(report);
-        if (args.verbose) {
-            log(overview.summary);
-        }
-        if (done) { done(); }
-    }
-}
 
 /**
  * Start the tests using karma.

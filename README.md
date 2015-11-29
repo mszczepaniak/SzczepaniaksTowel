@@ -1,19 +1,14 @@
-# Visual Studio Code Demo with Angular, TypeScript, Node, and HotTowel
+# Ampio Smart Home
 
-As seen at [//Build 2015](http://channel9.msdn.com/Events/Build/2015/3-680) presented by Erich Gamma, Chris Dias and John Papa.
-
-## Prerequisites
-
-1. Install [Node.js](http://nodejs.org) 
- - on OSX use [homebrew](http://brew.sh) `brew install node`
- - on Windows use [chocolatey](https://chocolatey.org/) `choco install nodejs`
-
-2. Install Yeoman `npm install -g yo`
-
-3. Install these NPM packages globally
-
+Instalacja (w konsoli, a najlepiej w powershellu)
+1. Zainstaluj node js i npm
+2. Instalacja globalnie yomana `npm install -g yo`
+3. Instalacja globalnie bowera, gulpa i nodemona
     ```bash
     npm install -g bower gulp nodemon
     ```
+4. Instalacja pakietow: `npm install`
+`brew install node`
 
-    >Refer to these [instructions on how to not require sudo](https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md)
+5. Odpalenie builda: `gulp build`
+6. Uruchomienie servera: `gulp serve-dev`
